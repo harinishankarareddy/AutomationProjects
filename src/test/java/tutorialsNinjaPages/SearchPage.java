@@ -13,9 +13,10 @@ public class SearchPage {
 	By WishListMsg=By.className("alert-dismissible");
 	By productImg=By.partialLinkText("MacBook Air");
 
-	public void selectFirstProductAndWishList() {
+	public WishListPage selectFirstProductAndWishList() {
 		driver.findElement(firstProduct).click();
 		driver.findElement(wishListBtn).click();
+		return new WishListPage(driver);
 	}
 	public String getWishListSuccessMsg() {
 		String wishListMsg=driver.findElement(WishListMsg).getText();

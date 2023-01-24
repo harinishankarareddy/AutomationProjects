@@ -2,12 +2,12 @@
 <testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-01-24T11:12:55 CET" name="Default suite" finished-at="2023-01-24T11:13:04 CET" duration-ms="9188">
+  <suite started-at="2023-01-24T21:58:00 CET" name="Default suite" finished-at="2023-01-24T21:58:06 CET" duration-ms="5868">
     <groups>
     </groups>
-    <test started-at="2023-01-24T11:12:55 CET" name="Default test" finished-at="2023-01-24T11:13:04 CET" duration-ms="9188">
+    <test started-at="2023-01-24T21:58:00 CET" name="Default test" finished-at="2023-01-24T21:58:06 CET" duration-ms="5868">
       <class name="tutorialsNinjaTests.ExtentReport">
-        <test-method signature="loginTest()[pri:0, instance:tutorialsNinjaTests.ExtentReport@36bc55de]" started-at="2023-01-24T11:12:55 CET" name="loginTest" finished-at="2023-01-24T11:13:04 CET" duration-ms="9123" status="FAIL">
+        <test-method signature="loginTest()[pri:0, instance:tutorialsNinjaTests.ExtentReport@36bc55de]" started-at="2023-01-24T21:58:00 CET" name="loginTest" finished-at="2023-01-24T21:58:06 CET" duration-ms="5822" status="FAIL">
           <exception class="java.lang.AssertionError">
             <message>
               <![CDATA[hsgdhagd]]>
@@ -15,7 +15,7 @@
             <full-stacktrace>
               <![CDATA[java.lang.AssertionError: hsgdhagd
 at org.testng.Assert.fail(Assert.java:110)
-at tutorialsNinjaTests.ExtentReport.loginTest(ExtentReport.java:64)
+at tutorialsNinjaTests.ExtentReport.loginTest(ExtentReport.java:65)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -50,7 +50,7 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loginTest -->
-        <test-method is-config="true" signature="at(org.testng.ITestResult)[pri:0, instance:tutorialsNinjaTests.ExtentReport@36bc55de]" started-at="2023-01-24T11:13:04 CET" name="at" finished-at="2023-01-24T11:13:04 CET" duration-ms="15" status="FAIL">
+        <test-method is-config="true" signature="at(org.testng.ITestResult)[pri:0, instance:tutorialsNinjaTests.ExtentReport@36bc55de]" started-at="2023-01-24T21:58:06 CET" name="at" finished-at="2023-01-24T21:58:06 CET" duration-ms="7" status="FAIL">
           <params>
             <param index="0">
               <value>
@@ -65,7 +65,7 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
             <full-stacktrace>
               <![CDATA[java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.TakesScreenshot.getScreenshotAs(org.openqa.selenium.OutputType)" because "takescreenshot" is null
 at tutorialsNinjaCommonInfo.CommonUtils.takeScreenshot(CommonUtils.java:32)
-at tutorialsNinjaTests.ExtentReport.at(ExtentReport.java:76)
+at tutorialsNinjaTests.ExtentReport.at(ExtentReport.java:79)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

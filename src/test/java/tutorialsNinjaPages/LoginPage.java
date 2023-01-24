@@ -14,10 +14,10 @@ public class LoginPage {
 	public LoginPage(WebDriver driver) {
 		this.driver=driver;
 	}
-	public MyAccountPage enterLoginCredentials() {
-		String user=CommonUtils.readValues("user");
-		String pwd=CommonUtils.readValues("pwd");
-		driver.findElement(emailField).sendKeys(user);
+	public MyAccountPage enterLoginCredentials(String type, String email, String pwd) {
+		//String user=CommonUtils.readValues("user");
+		//String pswd=CommonUtils.readValues("pwd");
+		driver.findElement(emailField).sendKeys(email);
 		driver.findElement(passwordField).sendKeys(pwd);
 		
 		return new MyAccountPage(driver);

@@ -6,7 +6,7 @@
 	<parameter name="defaultUser"
 		value="practicetesting@gmail.com"></parameter>
 		<parameter name="defaultPwd" value="Helloo@1234"></parameter>
-		
+		<parameter name="type" value="valid"></parameter>
   <test thread-count="5" name="Test">
     <classes>
       <class name="tutorialsNinjaTests.WishListTest"/>

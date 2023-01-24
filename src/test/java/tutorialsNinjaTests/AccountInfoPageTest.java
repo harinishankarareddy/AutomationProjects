@@ -20,7 +20,7 @@ public class AccountInfoPageTest extends BaseTest{
 		String expectedMessage="Success: Your account has been successfully updated.";
 		HeaderPage headerPage=new HeaderPage(driver);
 		LoginPage loginPage=headerPage.navigateToLoginPage();
-		loginPage.enterLoginCredentials();
+		loginPage.enterLoginCredentials(expectedMessage, expectedMessage, expectedMessage);
 		MyAccountPage myAccountPage=new MyAccountPage(driver);
 		AccountInformationPage accountInformationPage=myAccountPage.clickOnEditAccountInfoPageLink();
 		String fname=CommonUtils.generateRandomString();

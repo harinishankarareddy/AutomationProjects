@@ -17,7 +17,7 @@ public class RegisterPage {
 	public RegisterPage(WebDriver driver) {
 		this.driver=driver;
 	}
-	public void enterDataToRegisterAccountAndClickOnSubmit(String firstname,String lastname,String email,String telephone,String password,String confirmPwd) {
+	public void enterDataToRegisterAccount(String firstname,String lastname,String email,String telephone,String password,String confirmPwd) {
 		driver.findElement(firstnameField).sendKeys(firstname);
 		driver.findElement(lastnameField).sendKeys(lastname);
 		driver.findElement(emailField).sendKeys(email);

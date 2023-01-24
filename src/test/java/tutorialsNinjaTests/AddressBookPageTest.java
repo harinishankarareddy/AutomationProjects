@@ -14,12 +14,12 @@ import tutorialsNinjaPages.MyAccountPage;
 public class AddressBookPageTest extends BaseTest{
 	@Parameters({"defaultUser","defaultPwd"})
 	@Test
-	public void verifyModifyAddressBookFunctionality(String defaultEmail,String defaultPwd) {
+	public void verifyModifyAddressBookFunctionality(String type,String Email,String Pwd) {
 		String expectedMessage="Your address has been successfully added";
 		String expectedAddressAdded="ABCDEFGHIJ ABCDEFGHIJ";
 		HeaderPage headerPage=new HeaderPage(driver);
 		LoginPage loginPage=headerPage.navigateToLoginPage();
-		loginPage.enterLoginCredentials();
+		loginPage.enterLoginCredentials(type,Email,Pwd);
 		
 		MyAccountPage myAccountPage=new MyAccountPage(driver);
 		AddressBookPage addressBookPage=myAccountPage.clickOnModifyAddressPageLink();

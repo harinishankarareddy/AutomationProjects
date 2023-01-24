@@ -35,7 +35,7 @@ public class CommonUtils {
 			Date date=new Date();
 			String timestamp=sdf.format(date);
 			//copy the screenshot to a  desired loacation using copyfile method.
-			FileUtils.copyFile(source, new File("C:\\Users\\Harini\\eclipse-workspace-sita\\tutorialsNinja\\Screenshots"+fileName+timestamp+".png"));
+			FileUtils.copyFile(source, new File("C:\\Users\\Harini\\eclipse-workspace-sita\\tutorialsNinja\\Screenshots\\"+fileName+timestamp+".png"));
 		return fileName+timestamp+".png";
 		} catch (Exception e) {
 			e.printStackTrace();

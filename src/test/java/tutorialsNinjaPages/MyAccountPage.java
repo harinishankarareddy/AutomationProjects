@@ -13,6 +13,7 @@ public class MyAccountPage {
 	By searchProductField=By.name("search");
 	By searchBtn=By.className("btn-default");
 	By subscriptionMessage=By.xpath("//div[@id='account-account']/div[@class='alert alert-success alert-dismissible']");
+	
 	public AccountInformationPage clickOnEditAccountInfoPageLink() {
 		driver.findElement(editAccountLink).click();
 		return new AccountInformationPage(driver);
@@ -34,5 +35,9 @@ public class MyAccountPage {
 		String subscriptionMsg=driver.findElement(subscriptionMessage).getText();
 		return subscriptionMsg;
 		
+	}
+	public String editAccountInfoMsg() {
+		String editAccountText=driver.findElement(editAccountLink).getText();
+		return editAccountText;
 	}
 }

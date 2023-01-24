@@ -16,11 +16,11 @@ import tutorialsNinjaPages.WishListPage;
 public class ShoppingCartTest extends BaseTest{
 	
 	@Test
-	public void verifyAddProductToCartFunctionality() {
+	public void verifyAddProductToCartFunctionality(String type,String Email,String Pwd) {
 		boolean isUpdateBtnDisplayedExpected=true;
 		HeaderPage headerPage=new HeaderPage(driver);
 		LoginPage loginPage=headerPage.navigateToLoginPage();
-		MyAccountPage myAccountPage=loginPage.enterLoginCredentials();
+		MyAccountPage myAccountPage=loginPage.enterLoginCredentials(type,Email,Pwd);
 		SearchPage searchPage=myAccountPage.searchAProduct();
 		searchPage.selectFirstProductAndWishList();
 		WishListPage wishListPage=headerPage.navigateToWishListPage();
@@ -31,11 +31,11 @@ public class ShoppingCartTest extends BaseTest{
 
 	}
 	@Test
-	public void verifyShippingAndTaxes111functionality(String defaultEmail,String defaultPwd) throws InterruptedException {
+	public void verifyShippingAndTaxes111functionality(String type,String Email,String Pwd) throws InterruptedException {
 		String expectedMessage="Success: Your shipping estimate has been applied!";
 		HeaderPage headerPage=new HeaderPage(driver);
 		LoginPage loginPage=headerPage.navigateToLoginPage();
-		MyAccountPage myAccountPage=loginPage.enterLoginCredentials();
+		MyAccountPage myAccountPage=loginPage.enterLoginCredentials(type,Email,Pwd);
 		SearchPage searchPage=myAccountPage.searchAProduct();
 		ProductPage productPage=searchPage.selectAProduct();
 		productPage.addProductToCart();
