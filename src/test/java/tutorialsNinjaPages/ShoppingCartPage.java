@@ -23,7 +23,8 @@ public class ShoppingCartPage {
 	By getQuoteBtn=By.id("button-quote");
 	By flatRateBtn=By.name("shipping_method");
 	By applyShippingBtn=By.xpath("//input[@id='button-shipping']");
-
+	By giftRemoveBtnPresence=By.xpath("//div[@id='content']/form/div/table/tbody/tr[2]/td[4]/div/span/button");
+	By giftRemoveBtnDisplay=By.xpath("//div[@id='content']/form/div/table/tbody/tr[2]/td[4]/div/span/button");
 
 	public boolean isUpdateBtnDisplayed() {
 		int sizeOfList=driver.findElements(updateBtnPresent).size();
@@ -50,6 +51,13 @@ public class ShoppingCartPage {
 		String shippingSuccessMsg=driver.findElement(By.className("alert-dismissible")).getText();
 		return shippingSuccessMsg;
 	}
-
+public boolean isGiftremoveBtnDisplayed() {
+	int sizeOfList1=driver.findElements(giftRemoveBtnPresence).size();
+	if(sizeOfList1!=0) {
+		boolean actualResult=driver.findElement(giftRemoveBtnDisplay).isDisplayed();
+		return actualResult;
+	}
+	return false;
+}
 
 }

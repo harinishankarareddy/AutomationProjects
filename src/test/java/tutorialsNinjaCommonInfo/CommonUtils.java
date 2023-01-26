@@ -2,6 +2,7 @@ package tutorialsNinjaCommonInfo;
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
@@ -25,22 +26,20 @@ public class CommonUtils {
 			return null;
 		}
 	}
-	public static String takeScreenshot(WebDriver driver, String fileName){
+	public static String takeScreenshot(WebDriver driver, String fileName) throws IOException{
 
 		//take screenshot and store it as a file format
 		TakesScreenshot takescreenshot=(TakesScreenshot)driver;
 		File source=takescreenshot.getScreenshotAs(OutputType.FILE);
-		try {
+		
+	
 			SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmss");
 			Date date=new Date();
 			String timestamp=sdf.format(date);
+			String destination="C:\\Users\\Harini\\eclipse-workspace-sita\\tutorialsNinja\\Screenshots\\"+fileName+timestamp+".png";
 			//copy the screenshot to a  desired loacation using copyfile method.
-			FileUtils.copyFile(source, new File("C:\\Users\\Harini\\eclipse-workspace-sita\\tutorialsNinja\\Screenshots\\"+fileName+timestamp+".png"));
-		return fileName+timestamp+".png";
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
+			FileUtils.copyFile(source, new File(destination));		
+			return fileName;
 
 	}
 	public static String generateRandomString() {

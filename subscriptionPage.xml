@@ -4,8 +4,9 @@
 <parameter name="url"
 		value="http://tutorialsninja.com/demo/index.php?route=common/home"></parameter>
 	<parameter name="defaultUser"
-		value="practicetesting@gmail.com"></parameter>
-		<parameter name="defaultPwd" value="Helloo@1234"></parameter>
+		value="practicetestingsita@gmail.com"></parameter>
+		<parameter name="defaultPwd" value="Hello@123"></parameter>
+		<parameter name="subscriptionType" value="no"></parameter>
   <test thread-count="5" name="Test">
   <classes>
       <class name="tutorialsNinjaTests.NewsletterSubscriptionTest"/>

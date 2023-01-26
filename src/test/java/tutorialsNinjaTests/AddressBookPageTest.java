@@ -3,6 +3,7 @@ package tutorialsNinjaTests;
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import tutorialsNinjaCommonInfo.BaseTest;
 import tutorialsNinjaCommonInfo.CommonUtils;
@@ -14,14 +15,14 @@ import tutorialsNinjaPages.MyAccountPage;
 public class AddressBookPageTest extends BaseTest{
 	@Parameters({"defaultUser","defaultPwd"})
 	@Test
-	public void verifyModifyAddressBookFunctionality(String type,String Email,String Pwd) {
+	public void verifyModifyAddressBookFunctionality(String Email,String Pwd) {
 		String expectedMessage="Your address has been successfully added";
 		String expectedAddressAdded="ABCDEFGHIJ ABCDEFGHIJ";
 		HeaderPage headerPage=new HeaderPage(driver);
 		LoginPage loginPage=headerPage.navigateToLoginPage();
-		loginPage.enterLoginCredentials(type,Email,Pwd);
+		loginPage.enterLoginCredentials(Email,Pwd);
 		
-		MyAccountPage myAccountPage=new MyAccountPage(driver);
+		MyAccountPage myAccountPage=loginPage.clickOnLoginButton();
 		AddressBookPage addressBookPage=myAccountPage.clickOnModifyAddressPageLink();
 		String fname=CommonUtils.generateRandomString();
 		String lname=CommonUtils.generateRandomString();
@@ -31,13 +32,15 @@ public class AddressBookPageTest extends BaseTest{
 		String countryy=CommonUtils.generateRandomString();
 		String state=CommonUtils.generateRandomString();
 		addressBookPage.addNewAddressAndSubmit(fname, lname, address1, city, postcod, countryy, state);
+		SoftAssert softAssert=new SoftAssert();
 		String actualMessage=addressBookPage.getAddressAddedMessage();
-		Assert.assertTrue(actualMessage.contains(expectedMessage));
+		softAssert.assertTrue(actualMessage.contains(expectedMessage));
 		System.out.println("Address added successfully");
 		String actualAddressAdded=addressBookPage.getAddressAddedEntries();
-		Assert.assertTrue(actualAddressAdded.contains(expectedAddressAdded));
+		softAssert.assertTrue(actualAddressAdded.contains(expectedAddressAdded));		
 		System.out.println("Added address displayed in the address entry");
-		
+		  softAssert.assertAll();
+
 		
 		
 		

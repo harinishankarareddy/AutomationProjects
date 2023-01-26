@@ -19,9 +19,9 @@ public class AccountInfoPageTest extends BaseTest{
 	public void verifyEditAccountInfoFunctionality(String defaultEmail,String defaultPwd) {
 		String expectedMessage="Success: Your account has been successfully updated.";
 		HeaderPage headerPage=new HeaderPage(driver);
-		LoginPage loginPage=headerPage.navigateToLoginPage();
-		loginPage.enterLoginCredentials(expectedMessage, expectedMessage, expectedMessage);
-		MyAccountPage myAccountPage=new MyAccountPage(driver);
+		LoginPage loginpage=headerPage.navigateToLoginPage();
+		loginpage.enterLoginCredentials(defaultEmail,defaultPwd);
+		MyAccountPage myAccountPage=loginpage.clickOnLoginButton();
 		AccountInformationPage accountInformationPage=myAccountPage.clickOnEditAccountInfoPageLink();
 		String fname=CommonUtils.generateRandomString();
 		String lname=CommonUtils.generateRandomString();

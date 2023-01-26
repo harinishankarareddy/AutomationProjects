@@ -23,7 +23,7 @@ public class NewsletterSubscriptionPage {
 		}
 		else
 		{
-			driver.findElement(yesBtn).click();
+			driver.findElement(noBtn).click();
 			driver.findElement(continueBtn).click();
 			return new MyAccountPage(driver);
 		}

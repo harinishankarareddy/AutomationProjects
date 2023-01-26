@@ -1,13 +1,23 @@
-package tutorialsNinjaTests;
+ package tutorialsNinjaTests;
 
 import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.ExtentReports;
@@ -17,9 +27,10 @@ import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import tutorialsNinjaCommonInfo.BaseTest;
 import tutorialsNinjaCommonInfo.CommonUtils;
 
-public class ExtentReport {
+public class ExtentReport{
 	WebDriver driver;
 	ExtentReports extent;
 	ExtentTest log;
@@ -29,26 +40,38 @@ public class ExtentReport {
 	By loginBtn=By.xpath("//input[@type='submit']");
 	By myAccountBtn=By.partialLinkText("My Account");
 	By HeaderPageloginBtn=By.partialLinkText("Login");
-	@Test
-	public void loginTest() throws InterruptedException {
-
+	
+	@BeforeTest
+	public void setExtent() {
 		extent = new ExtentReports();
 		ExtentSparkReporter spark = new ExtentSparkReporter("C:\\Users\\Harini\\eclipse-workspace-sita\\tutorialsNinja\\test-output\\extenReport.html");
-		//File file=new File("extentReport.html");
-		//ExtentSparkReporter spark=new ExtentSparkReporter(file);
-
 		extent.attachReporter(spark);
 
-		log=extent.createTest("login Test");	
-		log.info("test info");
-
+	}
+	
+	@AfterTest
+	public void endReport() {
+		extent.flush();
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@Test
+	public void loginTest() throws InterruptedException {
 		WebDriverManager.chromedriver().setup();
 		WebDriver driver=new ChromeDriver();
-
-		log.info("opening the url");
-		driver.get("http://www.tutorialsninja.com/demo/");
 		driver.manage().window().maximize();
-		log.pass("Url is launched successfully");
+		driver.get("http://www.tutorialsninja.com/demo/");
+		
+		log=extent.createTest("login Test");	
+		log.info("test info");		
 	
 		log.info("clickOn MyAccount and clickOn Login");
 		driver.findElement(myAccountBtn).click();
@@ -60,27 +83,49 @@ public class ExtentReport {
 		driver.findElement(passwordField).sendKeys("Hello@123");
 		driver.findElement(loginBtn).click();
 		log.pass("entered credentials and loggedin successfully");
-
 		
-		Assert.fail("hsgdhagd");
-		extent.flush();
-		driver.quit();
-
-		  
+		String actualTitle=driver.getTitle();
+		String expectedTitle="MyAccount";
+		Assert.assertEquals(actualTitle, expectedTitle);
+		
+		driver.quit(); 
 
 	}
+		
+	
 	@AfterMethod
-	public void at(ITestResult result) {
+	public void at(ITestResult result) throws IOException {
 
 		if(result.getStatus()==2) {
-			log.fail(result.getName()+"test is failed");
-			String filePath=CommonUtils.takeScreenshot(driver,result.getName());
+			log.fail(result.getName()+"test is failed");//to add naem in extent report
+			log.fail(result.getThrowable()+"test is failed");//to add error/exception
+			String filePath=ExtentReport.takeScreenshot(driver,result.getName());
+			
 			File file=new File(filePath);
-			log.fail(MediaEntityBuilder.createScreenCaptureFromPath(file.getAbsolutePath()).build());
-		} else if(result.getStatus()==1)
+			log.fail(MediaEntityBuilder.createScreenCaptureFromPath(file.getAbsolutePath()).build());///to add screenshot in extent report
+		} else if(result.getStatus()==1) {
 			log.pass("test is passed");
+		}else if(result.getStatus()==3) {
+			log.skip("test is skipped");
+		}
 		extent.flush();
 		driver.quit();
+	}
+	public static String takeScreenshot(WebDriver driver, String fileName) throws IOException{
+
+		//take screenshot and store it as a file format
+		TakesScreenshot takescreenshot=(TakesScreenshot)driver;
+		File source=takescreenshot.getScreenshotAs(OutputType.FILE);
+		
+	
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmss");
+			Date date=new Date();
+			String timestamp=sdf.format(date);
+			String destination="C:\\Users\\Harini\\eclipse-workspace-sita\\tutorialsNinja\\Screenshots\\"+fileName+timestamp+".png";
+			//copy the screenshot to a  desired loacation using copyfile method.
+			FileUtils.copyFile(source, new File(destination));		
+			return destination;
+
 	}
 }
 

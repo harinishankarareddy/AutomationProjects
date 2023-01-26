@@ -14,14 +14,14 @@ import tutorialsNinjaPages.SearchPage;
 import tutorialsNinjaPages.WishListPage;
 
 public class WishListTest extends BaseTest{
-	@Parameters({"type","defaultUser","defaultPwd"})
+	@Parameters({"defaultUser","defaultPwd"})
   @Test
-  public void verifyAddProductToWishList(String type,String Email,String Pwd) {
+  public void verifyAddProductToWishList(String Email,String Pwd) {
 	  String expectedWishListMsg="Success: You have added MacBook to your wish list!";
 	  boolean isCartBtnDisplayedExpected=true;
 	  HeaderPage headerPage=new HeaderPage(driver);
 	  LoginPage loginPage=headerPage.navigateToLoginPage();
-	  MyAccountPage myAccountPage=loginPage.enterLoginCredentials(type,Email,Pwd);
+	  MyAccountPage myAccountPage=loginPage.enterLoginCredentials(Email,Pwd);
 	  SearchPage searchPage=myAccountPage.searchAProduct();
 	  searchPage.selectFirstProductAndWishList();
 	  String actualWishListMsg=searchPage.getWishListSuccessMsg();
@@ -41,13 +41,13 @@ public class WishListTest extends BaseTest{
 	 
 	  
   }
-	@Parameters({"type","defaultUser","defaultPwd"})
+	@Parameters({"defaultUser","defaultPwd"})
   @Test
-  public void verifyRemoveProductFromWishList(String type,String Email,String Pwd) {
+  public void verifyRemoveProductFromWishList(String Email,String Pwd) {
 	  String expectedResult="Success: You have modified your wish list!";
 	  HeaderPage headerPage=new HeaderPage(driver);
 	  LoginPage loginPage=headerPage.navigateToLoginPage();
-	  MyAccountPage myAccountPage=loginPage.enterLoginCredentials(type,Email,Pwd);
+	  MyAccountPage myAccountPage=loginPage.enterLoginCredentials(Email,Pwd);
 	  SearchPage searchPage=myAccountPage.searchAProduct();
 	  WishListPage wishListPage=searchPage.selectFirstProductAndWishList();
 	  headerPage.navigateToWishListPage();

@@ -1,5 +1,7 @@
 package tutorialsNinjaTests;
 
+import java.io.IOException;
+
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -17,48 +19,33 @@ import tutorialsNinjaPages.MyAccountPage;
 public class LoginPageTest extends BaseTest {
 	String expectedMsg="Edit your account information";
 	String expectedLoginPageUrl="http://tutorialsninja.com/demo/index.php?route=account/account";
-	
-	@Test(dataProvider = "loginCredentials")
-	public void verifyLogin(String type,String Email,String Pwd) throws InterruptedException {
+
+	@Parameters({"defaultUser","defaultPwd"})
+	@Test
+	public void verifyLogin(String user,String Pwd) throws InterruptedException, IOException {
+		String expecteTitle="Account Login";
 		HeaderPage headerPage=new HeaderPage(driver);
 		LoginPage loginpage=headerPage.navigateToLoginPage();
-		loginpage.enterLoginCredentials(type,Email,Pwd);
-		loginpage.clickOnLoginButton();
+		loginpage.enterLoginCredentials(user,Pwd);
+		MyAccountPage myAccountPage=loginpage.clickOnLoginButton();
 		CommonUtils.takeScreenshot(driver, "credentials");
-		MyAccountPage myAccountPage=new MyAccountPage(driver);
-		if(type.equalsIgnoreCase("valid")) {
-			String actualMsg=myAccountPage.editAccountInfoMsg();
-			Assert.assertEquals(actualMsg, expectedMsg);
-		}else
-		{
-		String actualLoginPageUrl=driver.getCurrentUrl();
-		Assert.assertEquals(actualLoginPageUrl, expectedLoginPageUrl); 
-		CommonUtils.takeScreenshot(driver, "InvalidType");
-		}
-		
+		String actualTitle=myAccountPage.loginSuccess();
+		Assert.assertEquals(actualTitle, expecteTitle);
+
+
 	}
-	
-	
-	@DataProvider(name="loginCredentials")
-	public Object[][] loginData() {
-	    return new Object[][] {
-	      new Object[] { "valid","practicetestingsita@gmail.com", "Hello@123" },
-	      new Object[] { "invalidPwd","practicetestingsita@gmail.com", "Helllloooo" },
-	      new Object[] { "invalidEmail","practice@gmail.com", "Hello@123" },
-	      new Object[] { "bothInvalid","practice@gmail.com", "Helllloooo" },
-	      new Object[] { "BothEmpty","", "" },
-	      };
-	
-	
-	
-	
-	
-	
-	}
-	
-	
-	
-	
+
+
+
+
+
+
+
 }
+
+
+
+
+
 
 

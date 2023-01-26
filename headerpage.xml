@@ -11,6 +11,7 @@
 	<parameter name="firstname" value="Harry"></parameter>
 <parameter name="lastname" value="Potter"></parameter>
 <parameter name="telephone" value="0764378263"></parameter>
+
 		<classes>
 			<class name="tutorialsNinjaTests.LoginPageTest"></class>
 			<class name="tutorialsNinjaTests.RegisterPageTest" />

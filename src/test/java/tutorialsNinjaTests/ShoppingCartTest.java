@@ -14,13 +14,13 @@ import tutorialsNinjaPages.ShoppingCartPage;
 import tutorialsNinjaPages.WishListPage;
 
 public class ShoppingCartTest extends BaseTest{
-	
+	@Parameters({"defaultUser","defaultPwd"})
 	@Test
-	public void verifyAddProductToCartFunctionality(String type,String Email,String Pwd) {
+	public void verifyAddProductToCartFunctionality(String Email,String Pwd) {
 		boolean isUpdateBtnDisplayedExpected=true;
 		HeaderPage headerPage=new HeaderPage(driver);
 		LoginPage loginPage=headerPage.navigateToLoginPage();
-		MyAccountPage myAccountPage=loginPage.enterLoginCredentials(type,Email,Pwd);
+		MyAccountPage myAccountPage=loginPage.enterLoginCredentials(Email,Pwd);
 		SearchPage searchPage=myAccountPage.searchAProduct();
 		searchPage.selectFirstProductAndWishList();
 		WishListPage wishListPage=headerPage.navigateToWishListPage();
@@ -30,12 +30,13 @@ public class ShoppingCartTest extends BaseTest{
 		Assert.assertEquals(isUpdateBtnDisplayedActual, isUpdateBtnDisplayedExpected);	  
 
 	}
+	@Parameters({"defaultUser","defaultPwd"})
 	@Test
-	public void verifyShippingAndTaxes111functionality(String type,String Email,String Pwd) throws InterruptedException {
+	public void verifyShippingAndTaxesfunctionality(String Email,String Pwd) throws InterruptedException {
 		String expectedMessage="Success: Your shipping estimate has been applied!";
 		HeaderPage headerPage=new HeaderPage(driver);
 		LoginPage loginPage=headerPage.navigateToLoginPage();
-		MyAccountPage myAccountPage=loginPage.enterLoginCredentials(type,Email,Pwd);
+		MyAccountPage myAccountPage=loginPage.enterLoginCredentials(Email,Pwd);
 		SearchPage searchPage=myAccountPage.searchAProduct();
 		ProductPage productPage=searchPage.selectAProduct();
 		productPage.addProductToCart();
@@ -44,7 +45,7 @@ public class ShoppingCartTest extends BaseTest{
 		shoppingCartPage.selectShippingMethod();
 		String actualMessage=shoppingCartPage.shippingMessage();
 		Assert.assertTrue(actualMessage.contains(expectedMessage));
-
+		
 
 
 
