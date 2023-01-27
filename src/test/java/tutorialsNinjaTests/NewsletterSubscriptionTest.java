@@ -11,13 +11,13 @@ import tutorialsNinjaPages.MyAccountPage;
 import tutorialsNinjaPages.NewsletterSubscriptionPage;
 
 public class NewsletterSubscriptionTest extends BaseTest{
-	@Parameters({"subscriptionType","defaultUser","defaultPwd"})
+	@Parameters("subscriptionType")
   @Test
-  public void verifyNewsletterSubscriptionFunctionality(String subscriptionType,String Email,String Pwd) {
+  public void verifyNewsletterSubscriptionFunctionality(String subscriptionType) {
 		String expectedMsg="Success: Your newsletter subscription has been successfully updated!";
 	  HeaderPage headerPage=new HeaderPage(driver);
 	  LoginPage loginPage=headerPage.navigateToLoginPage();
-	  loginPage.enterLoginCredentials(Email,Pwd);
+	  loginPage.enterLoginCredentials();
 	  MyAccountPage myAccountPage=loginPage.clickOnLoginButton();
 	  
 	  NewsletterSubscriptionPage newsletterSubscriptionPage=myAccountPage.subscribeOrUnsubscribeToNewsletter();
