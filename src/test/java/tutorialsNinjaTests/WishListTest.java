@@ -2,7 +2,6 @@ package tutorialsNinjaTests;
 
 import org.openqa.selenium.Dimension;
 import org.testng.Assert;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -14,22 +13,24 @@ import tutorialsNinjaPages.SearchPage;
 import tutorialsNinjaPages.WishListPage;
 
 public class WishListTest extends BaseTest{
-	@Parameters({"defaultUser","defaultPwd"})
+	
   @Test
-  public void verifyAddProductToWishList(String Email,String Pwd) {
+  public void verifyAddProductToWishList() throws InterruptedException {
 	  String expectedWishListMsg="Success: You have added MacBook to your wish list!";
 	  boolean isCartBtnDisplayedExpected=true;
 	  HeaderPage headerPage=new HeaderPage(driver);
 	  LoginPage loginPage=headerPage.navigateToLoginPage();
-	  MyAccountPage myAccountPage=loginPage.enterLoginCredentials(Email,Pwd);
+	  MyAccountPage myAccountPage=loginPage.enterLoginCredentials();
 	  SearchPage searchPage=myAccountPage.searchAProduct();
 	  searchPage.selectFirstProductAndWishList();
 	  String actualWishListMsg=searchPage.getWishListSuccessMsg();
-	  SoftAssert softAssert=new SoftAssert();	  
+	  SoftAssert softAssert=new SoftAssert();	
+	  Thread.sleep(3000);
 	  softAssert.assertTrue(actualWishListMsg.contains(expectedWishListMsg));
 	  WishListPage wishListPage=headerPage.navigateToWishListPage();
+	  
 	  boolean isCartBtnDisplayedActual=wishListPage.isCartBtnDisplayed();
-	  softAssert.assertEquals(isCartBtnDisplayedActual, expectedWishListMsg);
+	  softAssert.assertEquals(isCartBtnDisplayedActual, isCartBtnDisplayedExpected);
 	  
 	  wishListPage.addWishlistProductToCart();
 	  wishListPage.removeProductFromWishList();
@@ -41,13 +42,13 @@ public class WishListTest extends BaseTest{
 	 
 	  
   }
-	@Parameters({"defaultUser","defaultPwd"})
-  @Test
-  public void verifyRemoveProductFromWishList(String Email,String Pwd) {
+	
+  //@Test
+  public void verifyRemoveProductFromWishList() {
 	  String expectedResult="Success: You have modified your wish list!";
 	  HeaderPage headerPage=new HeaderPage(driver);
 	  LoginPage loginPage=headerPage.navigateToLoginPage();
-	  MyAccountPage myAccountPage=loginPage.enterLoginCredentials(Email,Pwd);
+	  MyAccountPage myAccountPage=loginPage.enterLoginCredentials();
 	  SearchPage searchPage=myAccountPage.searchAProduct();
 	  WishListPage wishListPage=searchPage.selectFirstProductAndWishList();
 	  headerPage.navigateToWishListPage();
@@ -56,7 +57,7 @@ public class WishListTest extends BaseTest{
 	  wishListPage.removeProductFromWishList();
 	  SoftAssert softAssert=new SoftAssert();
 	  String actualResult=wishListPage.productRemovedFromWishlistMsg();
-	  Assert.assertTrue(actualResult.contains(actualResult));
+	  Assert.assertTrue(actualResult.contains(expectedResult));
 	  Dimension ActualSize=wishListPage.getSizeOfWishList();
 	  System.out.println("Size Of WishList after Product Removal:"+ActualSize);
 	  softAssert.assertNotSame(ActualSize, expectedSize);

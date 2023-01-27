@@ -1,13 +1,9 @@
 package tutorialsNinjaTests;
 
-import static org.testng.Assert.assertEquals;
-
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import tutorialsNinjaCommonInfo.BaseTest;
-import tutorialsNinjaCommonInfo.CommonUtils;
 import tutorialsNinjaPages.HeaderPage;
 import tutorialsNinjaPages.RegisterPage;
 

@@ -14,12 +14,12 @@ import tutorialsNinjaPages.ShoppingCartPage;
 
 public class PurchaseGiftCertificateTest extends BaseTest{
 	
-	@Parameters({"defaultUser","defaultPwd"})
-  @Test(description="verifying purchase gift certificate functionality")
-  public void GiftCertificateTest(String email,String pwd) {
+	
+  @Test(description="verifying purchase gift certificate functionality checking non refundable checbox")
+  public void GiftCertificateTest() {
 	  HeaderPage headerPage=new HeaderPage(driver);
 	  LoginPage loginPage=headerPage.navigateToLoginPage();
-	  loginPage.enterLoginCredentials(email, pwd);
+	  loginPage.enterLoginCredentials();
 	  MyAccountPage myAccountPage=loginPage.clickOnLoginButton();
 	  AddGiftCertificatePage addGiftCertificatePage=myAccountPage.navigateToGiftCertificatePage();
 	  addGiftCertificatePage.purchaseGiftCertificate();
@@ -32,12 +32,12 @@ public class PurchaseGiftCertificateTest extends BaseTest{
 		  
 	}
 	@Parameters({"defaultUser","defaultPwd"})
-	  @Test(description="verifying purchase gift certificate functionality")
-	  public void GiftCertificateTest2(String email,String pwd) {
+	  @Test(description="verifying purchase gift certificate functionality without checking non refundable checbox")
+	  public void GiftCertificateTest2() {
 		  String expectedMessage="Warning: You must agree that the gift certificates are non-refundable!";
 		  HeaderPage headerPage=new HeaderPage(driver);
 		  LoginPage loginPage=headerPage.navigateToLoginPage();
-		  loginPage.enterLoginCredentials(email, pwd);
+		  loginPage.enterLoginCredentials();
 		  MyAccountPage myAccountPage=loginPage.clickOnLoginButton();
 		  AddGiftCertificatePage addGiftCertificatePage=myAccountPage.navigateToGiftCertificatePage();
 		  addGiftCertificatePage.purchaseGiftCertificate();
