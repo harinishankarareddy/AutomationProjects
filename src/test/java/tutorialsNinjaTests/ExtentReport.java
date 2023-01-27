@@ -1,4 +1,4 @@
- package tutorialsNinjaTests;
+package tutorialsNinjaTests;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,112 +15,104 @@ import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.configuration.Theme;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class ExtentReport{
 	WebDriver driver;
-	ExtentReports extent;
-	ExtentTest log;
 
+	ExtentReports extent;
+	ExtentTest test;
+	ExtentSparkReporter sparkReporter;
 	By emailField=By.name("email");
 	By passwordField=By.xpath("//input[@type='password']");
 	By loginBtn=By.xpath("//input[@type='submit']");
 	By myAccountBtn=By.partialLinkText("My Account");
 	By HeaderPageloginBtn=By.partialLinkText("Login");
-	
+
 	@BeforeTest
 	public void setExtent() {
 		extent = new ExtentReports();
-		ExtentSparkReporter spark = new ExtentSparkReporter("C:\\Users\\Harini\\eclipse-workspace-sita\\tutorialsNinja\\test-output\\extenReport.html");
-		extent.attachReporter(spark);
+		sparkReporter= new ExtentSparkReporter("C:\\Users\\Harini\\eclipse-workspace-sita\\tutorialsNinja\\test-output\\extentReports.html");
+		extent.attachReporter(sparkReporter);
+		sparkReporter.config().setDocumentTitle("Automation Reports");
+		sparkReporter.config().setReportName("Functional Report");
+		sparkReporter.config().setTheme(Theme.STANDARD);
+		extent.setSystemInfo("HostName","LocalHost");
+		extent.setSystemInfo("UserName", "Harini");
+		extent.setSystemInfo("OS", "Windows11");
+		extent.setSystemInfo("Browser", "Edge");
+	}
 
+	@BeforeMethod
+	public void setUp() {
+		WebDriverManager.chromedriver().setup();
+		driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("http://www.tutorialsninja.com/demo/");
 	}
-	
-	@AfterTest
-	public void endReport() {
-		extent.flush();
-		
-	}
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	@Test
 	public void loginTest() throws InterruptedException {
-		WebDriverManager.chromedriver().setup();
-		WebDriver driver=new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.get("http://www.tutorialsninja.com/demo/");
-		
-		log=extent.createTest("login Test");	
-		log.info("test info");		
-	
-		log.info("clickOn MyAccount and clickOn Login");
+
+		test=extent.createTest("login Test");	
+		test.info("test info");		
+		test.info("clickOn MyAccount and clickOn Login");
 		driver.findElement(myAccountBtn).click();
 		driver.findElement(HeaderPageloginBtn).click();
-		log.pass("Navigated to LoginPage");
-	
-		log.info("entering login credentials");
+		test.pass("Navigated to LoginPage");
+		test.info("entering login credentials");
 		driver.findElement(emailField).sendKeys("practicetestingsita@gmail.com");
 		driver.findElement(passwordField).sendKeys("Hello@123");
 		driver.findElement(loginBtn).click();
-		log.pass("entered credentials and loggedin successfully");
-		
+		test.pass("entered credentials and loggedin successfully");
 		String actualTitle=driver.getTitle();
-		String expectedTitle="MyAccount";
+		String expectedTitle="My Account";
 		Assert.assertEquals(actualTitle, expectedTitle);
+		Assert.fail("jadhjd");
 		
-		driver.quit(); 
-
 	}
-		
-	
+
 	@AfterMethod
-	public void at(ITestResult result) throws IOException {
+	public void tearDown(ITestResult result) throws IOException {
 
 		if(result.getStatus()==2) {
-			log.fail(result.getName()+"test is failed");//to add naem in extent report
-			log.fail(result.getThrowable()+"test is failed");//to add error/exception
-			String filePath=ExtentReport.takeScreenshot(driver,result.getName());
+			test.log(Status.FAIL,"test is failed"+result.getName());//to add naem in extent report
+			test.log(Status.FAIL,"test is failed"+result.getThrowable());//to add error/exception
+			String screenShotPath=ExtentReport.takeScreenshot(driver, result.getName());
 			
-			File file=new File(filePath);
-			log.fail(MediaEntityBuilder.createScreenCaptureFromPath(file.getAbsolutePath()).build());///to add screenshot in extent report
+			test.addScreenCaptureFromPath(screenShotPath);// adding screenshot
+			///to add screenshot in extent report
 		} else if(result.getStatus()==1) {
-			log.pass("test is passed");
+			test.log(Status.PASS,"test is passed"+result.getName());
 		}else if(result.getStatus()==3) {
-			log.skip("test is skipped");
+			test.log(Status.SKIP,"test is skipped"+result.getName());
 		}
-		extent.flush();
 		driver.quit();
 	}
-	public static String takeScreenshot(WebDriver driver, String fileName) throws IOException{
+	@AfterTest
+	public void endReport() {
+		extent.flush();
 
-		//take screenshot and store it as a file format
+	}
+	public static String takeScreenshot(WebDriver driver, String screenShotName) throws IOException{
+		String dateName=new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
 		TakesScreenshot takescreenshot=(TakesScreenshot)driver;
-		File source=takescreenshot.getScreenshotAs(OutputType.FILE);
-		
-	
-			SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmss");
-			Date date=new Date();
-			String timestamp=sdf.format(date);
-			String destination="C:\\Users\\Harini\\eclipse-workspace-sita\\tutorialsNinja\\Screenshots\\"+fileName+timestamp+".png";
-			//copy the screenshot to a  desired loacation using copyfile method.
-			FileUtils.copyFile(source, new File(destination));		
-			return destination;
-
+		File source=takescreenshot.getScreenshotAs(OutputType.FILE);	
+		String destination="C:\\Users\\Harini\\eclipse-workspace-sita\\tutorialsNinja\\Screenshots\\"+screenShotName+dateName+".png";
+		//copy the screenshot to a  desired loacation using copyfile method.
+		FileUtils.copyFile(source, new File(destination));		
+		return destination;
 	}
 }
 
