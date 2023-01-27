@@ -3,7 +3,6 @@ package tutorialsNinjaPages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
 
 public class MyAccountPage {
 	WebDriver driver;
@@ -17,7 +16,7 @@ public class MyAccountPage {
 	By subscriptionMessage=By.xpath("//div[@id='account-account']/div[@class='alert alert-success alert-dismissible']");
 	By giftCertificateLink=By.partialLinkText("Gift Certificates");
 	By camerasBtn=By.partialLinkText("Cameras");
-	
+	By subscribeBtn=By.partialLinkText("Subscribe / unsubscribe to newsletter");
 	public String loginSuccess() {
 		String title=driver.getTitle();
 		return title;
@@ -36,7 +35,7 @@ public class MyAccountPage {
 		return new SearchPage(driver);
 	}
 	public NewsletterSubscriptionPage subscribeOrUnsubscribeToNewsletter() {
-		driver.findElement(By.partialLinkText("Subscribe / unsubscribe to newsletter")).click();
+		driver.findElement(subscribeBtn).click();
 		return new NewsletterSubscriptionPage(driver);
 	}
 	public String subscriptionUpdateMessage() {

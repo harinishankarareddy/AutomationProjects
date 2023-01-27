@@ -1,7 +1,5 @@
 package tutorialsNinjaTests;
 
-import org.testng.Assert;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -13,14 +11,14 @@ import tutorialsNinjaPages.AddressBookPage;
 import tutorialsNinjaPages.MyAccountPage;
 
 public class AddressBookPageTest extends BaseTest{
-	@Parameters({"defaultUser","defaultPwd"})
+	
 	@Test
-	public void verifyModifyAddressBookFunctionality(String Email,String Pwd) {
+	public void verifyModifyAddressBookFunctionality() {
 		String expectedMessage="Your address has been successfully added";
 		String expectedAddressAdded="ABCDEFGHIJ ABCDEFGHIJ";
 		HeaderPage headerPage=new HeaderPage(driver);
 		LoginPage loginPage=headerPage.navigateToLoginPage();
-		loginPage.enterLoginCredentials(Email,Pwd);
+		loginPage.enterLoginCredentials();
 		
 		MyAccountPage myAccountPage=loginPage.clickOnLoginButton();
 		AddressBookPage addressBookPage=myAccountPage.clickOnModifyAddressPageLink();

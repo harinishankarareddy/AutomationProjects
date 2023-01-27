@@ -9,8 +9,8 @@ public class WishListPage {
 	public WishListPage(WebDriver driver) {
 		this.driver=driver;
 	}
-	By isCartBtnPresent=By.xpath("//button[@data-original-title='Add to Cart']");
-	By isCartBtnVisible=By.xpath("//button[@data-original-title='Add to Cart']");
+	By isCartBtnPresent=By.xpath("//button[@data-original-title='Add to Cart']/i");
+	By isCartBtnVisible=By.xpath("//button[@data-original-title='Add to Cart']/i");
 	By clickCartBtn=By.xpath("//button[@data-original-title='Add to Cart']");
 	By removeItemFromWishList=By.cssSelector("a[data-original-title='Remove']");
 	By cartTotal=By.id("cart-total");

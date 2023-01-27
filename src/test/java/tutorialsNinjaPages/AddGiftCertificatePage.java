@@ -3,8 +3,6 @@ package tutorialsNinjaPages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import tutorialsNinjaCommonInfo.CommonUtils;
-
 public class AddGiftCertificatePage {
 	WebDriver driver;
 	public AddGiftCertificatePage(WebDriver driver){

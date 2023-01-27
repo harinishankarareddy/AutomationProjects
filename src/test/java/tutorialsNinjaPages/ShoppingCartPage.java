@@ -1,8 +1,5 @@
 package tutorialsNinjaPages;
 
-import java.util.List;
-
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
@@ -25,7 +22,8 @@ public class ShoppingCartPage {
 	By applyShippingBtn=By.xpath("//input[@id='button-shipping']");
 	By giftRemoveBtnPresence=By.xpath("//div[@id='content']/form/div/table/tbody/tr[2]/td[4]/div/span/button");
 	By giftRemoveBtnDisplay=By.xpath("//div[@id='content']/form/div/table/tbody/tr[2]/td[4]/div/span/button");
-
+	By shippingMessage=By.className("alert-dismissible");
+	
 	public boolean isUpdateBtnDisplayed() {
 		int sizeOfList=driver.findElements(updateBtnPresent).size();
 		if(sizeOfList!=0) {
@@ -48,7 +46,7 @@ public class ShoppingCartPage {
 		driver.findElement(applyShippingBtn).click();
 	}
 	public String shippingMessage() {
-		String shippingSuccessMsg=driver.findElement(By.className("alert-dismissible")).getText();
+		String shippingSuccessMsg=driver.findElement(shippingMessage).getText();
 		return shippingSuccessMsg;
 	}
 public boolean isGiftremoveBtnDisplayed() {

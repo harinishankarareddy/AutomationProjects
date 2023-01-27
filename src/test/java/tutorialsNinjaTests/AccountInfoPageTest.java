@@ -1,26 +1,24 @@
 package tutorialsNinjaTests;
 
 import org.testng.Assert;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import tutorialsNinjaCommonInfo.BaseTest;
 import tutorialsNinjaCommonInfo.CommonUtils;
 import tutorialsNinjaPages.HeaderPage;
 import tutorialsNinjaPages.LoginPage;
-import tutorialsNinjaPages.AddressBookPage;
 import tutorialsNinjaPages.MyAccountPage;
 import tutorialsNinjaPages.AccountInformationPage;
 
 public class AccountInfoPageTest extends BaseTest{
 
-	@Parameters({"defaultUser","defaultPwd"})
+	
 	@Test
-	public void verifyEditAccountInfoFunctionality(String defaultEmail,String defaultPwd) {
+	public void verifyEditAccountInfoFunctionality() {
 		String expectedMessage="Success: Your account has been successfully updated.";
 		HeaderPage headerPage=new HeaderPage(driver);
 		LoginPage loginpage=headerPage.navigateToLoginPage();
-		loginpage.enterLoginCredentials(defaultEmail,defaultPwd);
+		loginpage.enterLoginCredentials();
 		MyAccountPage myAccountPage=loginpage.clickOnLoginButton();
 		AccountInformationPage accountInformationPage=myAccountPage.clickOnEditAccountInfoPageLink();
 		String fname=CommonUtils.generateRandomString();
