@@ -25,7 +25,7 @@ public class WishListTest extends BaseTest{
 	  searchPage.selectFirstProductAndWishList();
 	  String actualWishListMsg=searchPage.getWishListSuccessMsg();
 	  SoftAssert softAssert=new SoftAssert();	
-	  Thread.sleep(3000);
+	  
 	  softAssert.assertTrue(actualWishListMsg.contains(expectedWishListMsg));
 	  WishListPage wishListPage=headerPage.navigateToWishListPage();
 	  

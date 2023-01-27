@@ -16,6 +16,8 @@ public class ProductComparisionTest extends BaseTest {
   public void productComparision() {
 		String expectedProduct1="Canon EOS 5D";
 		String expectedProduct2="Nikon D300";
+		String expectedProdNum1="Product 3";
+		String expectedProdNum2="Product 4";
 		HeaderPage headerPage=new HeaderPage(driver);
 		LoginPage loginPage=headerPage.navigateToLoginPage();
 		loginPage.enterLoginCredentials();
@@ -28,6 +30,12 @@ public class ProductComparisionTest extends BaseTest {
 		softAssert.assertEquals(actualProduct1,expectedProduct1);
 		String actualProduct2=productComparisionPage.getSecondProductName();
 		softAssert.assertEquals(actualProduct2, expectedProduct2);
+		
+		String actualProdNum1=productComparisionPage.getFirstProductNumber();
+		softAssert.assertEquals(actualProdNum1, expectedProdNum1);
+		
+		String actualProdNum2=productComparisionPage.getSecondProductNumber();
+		softAssert.assertEquals(actualProdNum2, expectedProdNum2);	
 		softAssert.assertAll();		
   }
 }
