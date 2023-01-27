@@ -25,6 +25,7 @@ public class AddressBookPage {
 	By delNonDefaultAddressBtn=By.partialLinkText("Delete");
 	By addressAddedEntry=By.xpath("//div[@id='content']/div//td");
 	By clickOnAccount=By.partialLinkText("Account");
+	
 	public void addNewAddressAndSubmit(String firstname,String lastname,String address1,String city,String postCode,String country,String state) 
 	{
 		driver.findElement(newAddressBtn).click();

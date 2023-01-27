@@ -3,13 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="tutorialsNinjaTests.AccountInfoPageTest">
+      <class name="tutorialsNinjaTests.ExtentReportsDemo">
         <methods>
-          <include name="LaunchBrowserAndOpenUrl"/>
-          <include name="QuitBrowser"/>
-          <include name="verifyEditAccountInfoFunctionality"/>
+          <include name="loginTest"/>
         </methods>
-      </class> <!-- tutorialsNinjaTests.AccountInfoPageTest -->
+      </class> <!-- tutorialsNinjaTests.ExtentReportsDemo -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -16,6 +16,7 @@ public class MyAccountPage {
 	By searchBtn=By.className("btn-default");
 	By subscriptionMessage=By.xpath("//div[@id='account-account']/div[@class='alert alert-success alert-dismissible']");
 	By giftCertificateLink=By.partialLinkText("Gift Certificates");
+	By camerasBtn=By.partialLinkText("Cameras");
 	
 	public String loginSuccess() {
 		String title=driver.getTitle();
@@ -48,8 +49,12 @@ public class MyAccountPage {
 	}
 	public AddGiftCertificatePage navigateToGiftCertificatePage() {
 		JavascriptExecutor js=(JavascriptExecutor)driver;
-		js.executeScript("window.scrollBy(0,200)","");
+		js.executeScript("window.scrollBy(0,300)","");
 		driver.findElement(giftCertificateLink).click();
 		return new AddGiftCertificatePage(driver);
+	}
+	public CamerasPage categoryCameras() {
+		driver.findElement(camerasBtn).click();
+		return new CamerasPage(driver);
 	}
 }

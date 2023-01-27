@@ -10,30 +10,39 @@ public class AddGiftCertificatePage {
 	public AddGiftCertificatePage(WebDriver driver){
 		this.driver=driver;
 	}
+	By recipientName=By.name("to_name");
+	By recipientEmail=By.name("to_email");
+	By giftTheme=By.cssSelector("input[value='7']");
+	By giftMsg=By.xpath("//textarea[@id='input-message']");
+	By amoutClear=By.name("amount");
+	By amountNew=By.name("amount");
+	By nonRefundableCheck=By.name("agree");
+	By continueBtn=By.xpath("//input[@type='submit']");
+	By warningMsgrefundable=By.xpath("//div[@id='account-voucher']/div");
 
 	public void purchaseGiftCertificate() {
-		driver.findElement(By.name("to_name")).sendKeys("Blippi");
-		driver.findElement(By.name("to_email")).sendKeys("blippi@gmail.com");
-		driver.findElement(By.cssSelector("input[value='7']")).click();
-		driver.findElement(By.xpath("//textarea[@id='input-message']")).sendKeys("Happy Birthday");
-		driver.findElement(By.name("amount")).clear();
-		driver.findElement(By.name("amount")).sendKeys("10");	
+		driver.findElement(recipientName).sendKeys("Blippi");
+		driver.findElement(recipientEmail).sendKeys("blippi@gmail.com");
+		driver.findElement(giftTheme).click();
+		driver.findElement(giftMsg).sendKeys("Happy Birthday");
+		driver.findElement(amoutClear).clear();
+		driver.findElement(amountNew).sendKeys("10");	
 
 	}
 	public PurchaseGiftCertificatePage nonRefundableOptionCheck() {
-		driver.findElement(By.name("agree")).click();
-		driver.findElement(By.xpath("//input[@type='submit']")).click();
+		driver.findElement(nonRefundableCheck).click();
+		driver.findElement(continueBtn).click();
 		return new PurchaseGiftCertificatePage(driver);
 	}
 	public AddGiftCertificatePage nonRefundableOptionUnCheck() {
 
-		driver.findElement(By.xpath("//input[@type='submit']")).click();
+		driver.findElement(continueBtn).click();
 		return new AddGiftCertificatePage(driver);
 	}
 
 
 	public String warningMessageNonrefundable() {
-		String warningMessage=driver.findElement(By.xpath("//div[@id='account-voucher']/div")).getText();
+		String warningMessage=driver.findElement(warningMsgrefundable).getText();
 		return warningMessage;
 	}
 

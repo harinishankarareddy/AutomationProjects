@@ -17,7 +17,7 @@ public class WishListPage {
 	By viewCart=By.xpath("//strong/i[@class='fa fa-shopping-cart']");
 	By getWishListEmptyMsg=By.xpath("//div[@id='content']/p[text()='Your wish list is empty.']");
 	By wishListBtnSize=By.id("wishlist-total");
-	
+	By removeProdMsg=By.xpath("//div[@id='account-wishlist']/div[1]/i");
 	
 	public boolean isCartBtnDisplayed() {
 		int sizeOfList=driver.findElements(isCartBtnPresent).size();
@@ -51,7 +51,7 @@ public class WishListPage {
 			
 	}
 	public String productRemovedFromWishlistMsg() {
-		String productRemoveMsg=driver.findElement(By.xpath("//div[@id='account-wishlist']/div[1]/i")).getText();
+		String productRemoveMsg=driver.findElement(removeProdMsg).getText();
 		return productRemoveMsg;
 	}
 	
