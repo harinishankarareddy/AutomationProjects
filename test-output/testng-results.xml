@@ -2,20 +2,62 @@
 <testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-01-26T22:42:21 CET" name="Default suite" finished-at="2023-01-26T22:42:29 CET" duration-ms="7904">
+  <suite started-at="2023-01-27T19:12:34 CET" name="Suite" finished-at="2023-01-27T19:13:06 CET" duration-ms="32053">
     <groups>
     </groups>
-    <test started-at="2023-01-26T22:42:21 CET" name="Default test" finished-at="2023-01-26T22:42:29 CET" duration-ms="7904">
-      <class name="tutorialsNinjaTests.ExtentReportsDemo">
-        <test-method signature="loginTest()[pri:0, instance:tutorialsNinjaTests.ExtentReportsDemo@3e58a80e]" started-at="2023-01-26T22:42:21 CET" name="loginTest" finished-at="2023-01-26T22:42:29 CET" duration-ms="7850" status="FAIL">
-          <exception class="java.lang.AssertionError">
+    <test started-at="2023-01-27T19:12:34 CET" name="Test" finished-at="2023-01-27T19:13:06 CET" duration-ms="32053">
+      <class name="tutorialsNinjaTests.WishListTest">
+        <test-method is-config="true" signature="LaunchBrowserAndOpenUrl(java.lang.String)[pri:0, instance:tutorialsNinjaTests.WishListTest@6b81ce95]" started-at="2023-01-27T19:12:34 CET" name="LaunchBrowserAndOpenUrl" finished-at="2023-01-27T19:12:39 CET" duration-ms="4710" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[http://tutorialsninja.com/demo/index.php?route=common/home]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LaunchBrowserAndOpenUrl -->
+        <test-method signature="verifyAddProductToWishList()[pri:0, instance:tutorialsNinjaTests.WishListTest@6b81ce95]" started-at="2023-01-27T19:12:39 CET" name="verifyAddProductToWishList" finished-at="2023-01-27T19:13:05 CET" duration-ms="26893" status="FAIL">
+          <exception class="org.openqa.selenium.NoSuchElementException">
             <message>
-              <![CDATA[hsdhhj]]>
+              <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"//button[@data-original-title='Add to Cart']"}
+  (Session info: MicrosoftEdge=109.0.1518.69)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'DESKTOP-36SMPU4', ip: '192.168.0.26', os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.5'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Capabilities {acceptInsecureCerts: false, browserName: msedge, browserVersion: 109.0.1518.69, javascriptEnabled: true, ms:edgeOptions: {debuggerAddress: localhost:62496}, msedge: {msedgedriverVersion: 109.0.1518.70 (f787d2c3a418..., userDataDir: C:\Users\Harini\AppData\Loc...}, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: bb9052bb430ccecae25cfc19951febba
+*** Element info: {Using=xpath, value=//button[@data-original-title='Add to Cart']}]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: hsdhhj
-at org.testng.Assert.fail(Assert.java:110)
-at tutorialsNinjaTests.ExtentReportsDemo.loginTest(ExtentReportsDemo.java:65)
+              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//button[@data-original-title='Add to Cart']"}
+  (Session info: MicrosoftEdge=109.0.1518.69)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'DESKTOP-36SMPU4', ip: '192.168.0.26', os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.5'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Capabilities {acceptInsecureCerts: false, browserName: msedge, browserVersion: 109.0.1518.69, javascriptEnabled: true, ms:edgeOptions: {debuggerAddress: localhost:62496}, msedge: {msedgedriverVersion: 109.0.1518.70 (f787d2c3a418..., userDataDir: C:\Users\Harini\AppData\Loc...}, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: bb9052bb430ccecae25cfc19951febba
+*** Element info: {Using=xpath, value=//button[@data-original-title='Add to Cart']}
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+at tutorialsNinjaPages.WishListPage.addWishlistProductToCart(WishListPage.java:31)
+at tutorialsNinjaTests.WishListTest.verifyAddProductToWishList(WishListTest.java:35)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -46,11 +88,22 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
+          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- loginTest -->
-      </class> <!-- tutorialsNinjaTests.ExtentReportsDemo -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+        </test-method> <!-- verifyAddProductToWishList -->
+        <test-method is-config="true" signature="QuitBrowser(org.testng.ITestResult)[pri:0, instance:tutorialsNinjaTests.WishListTest@6b81ce95]" started-at="2023-01-27T19:13:05 CET" name="QuitBrowser" finished-at="2023-01-27T19:13:06 CET" duration-ms="413" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifyAddProductToWishList status=FAILURE method=WishListTest.verifyAddProductToWishList()[pri:0, instance:tutorialsNinjaTests.WishListTest@6b81ce95] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- QuitBrowser -->
+      </class> <!-- tutorialsNinjaTests.WishListTest -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
 </testng-results>
