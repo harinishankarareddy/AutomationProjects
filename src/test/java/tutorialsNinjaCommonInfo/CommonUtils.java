@@ -26,21 +26,15 @@ public class CommonUtils {
 			return null;
 		}
 	}
-	public static String takeScreenshot(WebDriver driver, String fileName) throws IOException{
+	public static String takeScreenshot(WebDriver driver, String screenShotName) throws IOException{
 
-		//take screenshot and store it as a file format
-		TakesScreenshot takescreenshot=(TakesScreenshot)driver;
-		File source=takescreenshot.getScreenshotAs(OutputType.FILE);
-		
-	
-			SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmss");
-			Date date=new Date();
-			String timestamp=sdf.format(date);
-			String destination="C:\\Users\\Harini\\eclipse-workspace-sita\\tutorialsNinja\\Screenshots\\"+fileName+timestamp+".png";
+			String dateName=new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+			TakesScreenshot takescreenshot=(TakesScreenshot)driver;
+			File source=takescreenshot.getScreenshotAs(OutputType.FILE);	
+			String destination="C:\\Users\\Harini\\eclipse-workspace-sita\\tutorialsNinja\\Screenshots\\"+screenShotName+dateName+".png";
 			//copy the screenshot to a  desired loacation using copyfile method.
 			FileUtils.copyFile(source, new File(destination));		
-			return fileName;
-
+			return destination;
 	}
 	public static String generateRandomString() {
 		String s="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";

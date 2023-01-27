@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
@@ -18,10 +17,8 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
@@ -39,7 +36,12 @@ public class ExtentReport{
 	By loginBtn=By.xpath("//input[@type='submit']");
 	By myAccountBtn=By.partialLinkText("My Account");
 	By HeaderPageloginBtn=By.partialLinkText("Login");
-
+	By forgotPwdLink=By.partialLinkText("Forgotten Password");
+	By emailFieldPwd=By.id("input-email");
+	By resetButton=By.xpath("//input[@type='submit']");
+	By confirmMessage=By.className("alert-dismissible");
+	
+	
 	@BeforeTest
 	public void setExtent() {
 		extent = new ExtentReports();
@@ -83,6 +85,27 @@ public class ExtentReport{
 		
 	}
 
+	@Test
+	public void forgotPassword() throws InterruptedException {
+		test=extent.createTest("Forgot Password Test");
+		test.info("clickOn MyAccount and clickOn Login");
+		driver.findElement(myAccountBtn).click();
+		driver.findElement(HeaderPageloginBtn).click();
+		test.pass("Navigated to LoginPage");
+		test.info("Click on ForgotPwd Link");
+		driver.findElement(forgotPwdLink).click();
+		test.pass("Navigated to ForgotPwdPage");
+		test.info("Enter Email to ResetPwd And Click Continue Button");
+		driver.findElement(emailFieldPwd).sendKeys("practicetestingsita@gmail.com");
+		driver.findElement(resetButton).click();
+		test.pass("Password reset initiated");
+		String expectedTitle="Account Login";
+		String actualTitle=driver.getTitle();
+		Assert.assertEquals(actualTitle, expectedTitle);
+	
+	}
+	
+	
 	@AfterMethod
 	public void tearDown(ITestResult result) throws IOException {
 

@@ -17,26 +17,38 @@ public class LoginPageTest extends BaseTest {
 	String expectedLoginPageUrl="http://tutorialsninja.com/demo/index.php?route=account/account";
 
 	
-	@Test
+	//@Test
 	public void verifyLogin() throws InterruptedException, IOException {
-		String expecteTitle="Account Login";
+		String expectedTitle="My Account";
 		HeaderPage headerPage=new HeaderPage(driver);
 		LoginPage loginpage=headerPage.navigateToLoginPage();
-		Thread.sleep(2000);
 		loginpage.enterLoginCredentials();
 		MyAccountPage myAccountPage=loginpage.clickOnLoginButton();
 		CommonUtils.takeScreenshot(driver, "credentials");
 		String actualTitle=myAccountPage.loginSuccess();
-		Assert.assertEquals(actualTitle, expecteTitle);
-
+		Assert.assertEquals(actualTitle, expectedTitle);
 
 	}
 
 
+	@Test
+	public void verifyLogin2() throws InterruptedException, IOException {
 
-
-
-
+	test=extent.createTest("login Test");	
+	test.info("test info");		
+	test.info("clickOn MyAccount and clickOn Login");
+	HeaderPage headerPage=new HeaderPage(driver);
+	LoginPage loginpage=headerPage.navigateToLoginPage();
+	test.pass("Navigated to LoginPage");
+	test.info("entering login credentials");
+	loginpage.enterLoginCredentials();
+	MyAccountPage myAccountPage=loginpage.clickOnLoginButton();
+	test.pass("entered credentials and loggedin successfully");
+	String actualTitle=myAccountPage.loginSuccess();
+	String expectedTitle="My Account";
+	Assert.assertEquals(actualTitle, expectedTitle);
+	test.pass("Login Test Passed");
+	}
 
 }
 
