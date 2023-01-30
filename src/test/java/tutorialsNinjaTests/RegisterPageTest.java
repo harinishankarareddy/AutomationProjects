@@ -15,7 +15,7 @@ public class RegisterPageTest extends BaseTest{
 	  String expectedRegisterPage="http://tutorialsninja.com/demo/index.php?route=account/success";
 	  HeaderPage headerPage=new HeaderPage(driver);
 	  RegisterPage registerpage=headerPage.navigateToRegisterPage();
-	  registerpage.enterDataToRegisterAccount("veronica","name","mailing@gmail.com","987654321","password@123","password@123");
+	  registerpage.enterDataToRegisterAccount();
 	  String actualRegisterPage=driver.getCurrentUrl();
 	  Assert.assertEquals(actualRegisterPage, expectedRegisterPage);
 	 	  

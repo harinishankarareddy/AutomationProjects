@@ -9,6 +9,7 @@ import java.util.Properties;
 import java.util.Random;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -37,22 +38,24 @@ public class CommonUtils {
 			return destination;
 	}
 	public static String generateRandomString() {
-		String s="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+		String randomString=RandomStringUtils.randomAlphabetic(8);
+		/*String s="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 		String randomString="";
 		for (int i = 0; i < 10; i++) {
 			int randomNum=new Random().nextInt(52);
 			randomString+=s.charAt(i);
-		}
+		}*/
 		
 		return randomString;
 	}
 	public static String generateRandomNumber() {
-		String s="0123456789";
+		String randomNumber=RandomStringUtils.randomNumeric(6);
+		/*String s="0123456789";
 		String randomNumber="";
 		for (int i = 0; i < 5; i++) {
 			int randomNum=new Random().nextInt(52);
 			randomNumber+=s.charAt(3);
-		}
+		}*/
 		
 		return randomNumber;
 	}
