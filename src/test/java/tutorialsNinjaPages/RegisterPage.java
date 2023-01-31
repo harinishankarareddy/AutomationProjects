@@ -3,6 +3,8 @@ package tutorialsNinjaPages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import tutorialsNinjaCommonInfo.CommonUtils;
+
 public class RegisterPage {
 	WebDriver driver;
 	By firstnameField=By.name("firstname");
@@ -17,17 +19,22 @@ public class RegisterPage {
 	public RegisterPage(WebDriver driver) {
 		this.driver=driver;
 	}
-	public void enterDataToRegisterAccount(String firstname,String lastname,String email,String telephone,String password,String confirmPwd) {
+	public void enterDataToRegisterAccount() {
+		String firstname=CommonUtils.generateRandomString();
+		String lastname=CommonUtils.generateRandomString();
+		String password=CommonUtils.generateRandomString();
+		String telephone=CommonUtils.generateRandomNumber();
 		driver.findElement(firstnameField).sendKeys(firstname);
 		driver.findElement(lastnameField).sendKeys(lastname);
-		driver.findElement(emailField).sendKeys(email);
+		driver.findElement(emailField).sendKeys("testingsita@gmail.com");
 		driver.findElement(telephoneField).sendKeys(telephone);
 		driver.findElement(passwordField).sendKeys(password);
-		driver.findElement(confirmPwdField).sendKeys(confirmPwd);
+		driver.findElement(confirmPwdField).sendKeys(password);
 		driver.findElement(checkbox).click();
 		driver.findElement(registerBtn).click();
 
 	}
+	
 
 
 
